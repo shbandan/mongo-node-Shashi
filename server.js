@@ -23,9 +23,9 @@ mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL, 
     pass: 'mongodb',
     useNewUrlParser: true
 }).then(() => {
-    console.log('Database successfully connected' + process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
+    console.log('Database successfully connected');
 }).catch(err => {
-    console.log('Database connection failed. ' + process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL, err);
+    console.log('Database connection failed. ', err);
     process.exit();
 });
 
