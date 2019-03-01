@@ -18,14 +18,16 @@ app.set('views', path.join(__dirname, '/app/views/'));
 app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/app/views/layouts/' }));
 app.set('view engine', 'hbs');
 
-mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL, {
+mongoose.connect(dbConfig.url, {
     user: 'admin',
     pass: 'mongodb',
     useNewUrlParser: true
 }).then(() => {
     console.log('Database successfully connected');
+    console.log(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
 }).catch(err => {
     console.log('Database connection failed. ', err);
+    console.log(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
     process.exit();
 });
 
